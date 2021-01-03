@@ -25,14 +25,14 @@ const getReview = review => ({ type: GET_REVIEW, review })
 
 export const fetchReviews = (productId) => 
   dispatch =>
-    axios.get(`/api/reviews/${productId}`)
+    axios.get(`http://127.0.0.1:8000/api/reviews/${productId}`)
       .then(res => 
         dispatch(getReviews(res.data || defaultReviews)))
       .catch(err => console.log(err))
 
 export const postReview = (review) =>
   dispatch =>
-    axios.post('/api/reviews', review)
+    axios.post('http://127.0.0.1:8000/api/reviews', review)
       .then(res => 
         dispatch(getReview(res.data)))
       .catch(err => console.log(err))

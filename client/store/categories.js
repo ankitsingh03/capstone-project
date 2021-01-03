@@ -21,7 +21,7 @@ const getCategories = categories => ({type: GET_CATEGORIES, categories})
  */
 export const fetchCategories = () =>
   dispatch =>
-    axios.get('/api/categories')
+    axios.get('http://127.0.0.1:8000/api/categories')
       .then(res =>
         dispatch(getCategories(res.data || defaultProduct)))
       .catch(err => console.log(err))

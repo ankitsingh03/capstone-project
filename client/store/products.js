@@ -22,14 +22,14 @@ const getProducts = products => ({type: GET_PRODUCTS, products})
  */
 export const fetchProducts = () =>
   dispatch =>
-    axios.get('/api/products/')
+    axios.get('http://127.0.0.1:8000/api/products')
       .then(res =>
         dispatch(getProducts(res.data || defaultProduct)))
       .catch(err => console.log(err))
 
 export const fetchCategoryThunk = (categoryId) =>
   dispatch =>
-    axios.get(`/api/categories/${categoryId}`)
+    axios.get(`http://127.0.0.1:8000/api/categories/${categoryId}`)
       .then(res =>
         dispatch(getProducts(res.data || defaultProduct)))
       .catch(err => console.log(err))
