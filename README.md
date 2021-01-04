@@ -43,6 +43,8 @@ In one terminal run the following command
 View the Smart-Mart application:
 ` $ open http://localhost:8080 ` in your browser (**it will open the nodejs server along with react**)
 
+
+## start the django server
 In other terminal `cd server2` and run `python manage.py runserver`
 
 
