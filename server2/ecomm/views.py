@@ -152,6 +152,14 @@ def cart_detail(request, pks, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(['GET'])
+def order_list(request, pk, format=None):
+    if request.method == "GET":
+        snippet = Order.objects.annotate(userId=F('user')).annotate(firstName=F('firstname')).annotate(lastName=F('lastname')).annotate(zip=F('zip_code')).filter(user__id=pk)
+        serializer = OrderSerializer(snippet, many=True)
+        return Response(serializer.data)
+
+
 @api_view(['POST'])
 def order_detail(request, format=None):
     if request.method == 'POST':
@@ -159,8 +167,11 @@ def order_detail(request, format=None):
         checkout = request.data['checkout']
         cart = request.data['cart']
         user = request.data['user']
+        token = request.data['token']
+        total = int(float(cart['total']))
         userObj=User.objects.filter(id=user['id']).first()
         token = request.data['token']
+        print("***********###################********")
         orderObj = Order.objects.create(
             firstname=checkout['firstName'],
             lastname=checkout['lastName'],
@@ -169,12 +180,15 @@ def order_detail(request, format=None):
             street=checkout['street'],
             street2=checkout['street2'],
             state=checkout['state'],
-            zip=checkout['zip'],
-            user=userObj
+            zip_code=checkout['zip'],
+            user=userObj,
+            token=token,
+            total=total
             )
+        
         for i in cart['myCart']:
             product = Product.objects.filter(id=i['id']).first()
             LineItem.objects.create(quantity=i['quantity'],product=product, order=orderObj)
-        print("*******************")
+        
         return Response(status=status.HTTP_201_CREATED)
         

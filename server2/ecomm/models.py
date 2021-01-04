@@ -43,11 +43,11 @@ class Order(models.Model):
         shipped = 'shipped'
         delivered = 'delivered'
     class XYZ(models.TextChoices):
-        AK = 'AK'
-        an = 'Arunachal Pradesh'
-        Assam = 'Assam'
-        Bihar = 'Bihar'
-        Chhattisgarh = 'Chhattisgarh'
+        Delhi = 'Delhi'
+        Mumbai = 'Mumbai'
+        Bangalore = 'Bangalore'
+        Kolkata = 'Kolkata'
+        Chennai = 'Chennai'
     status = models.CharField(max_length=50, choices=ABC.choices, default=ABC.pending)
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
@@ -55,12 +55,14 @@ class Order(models.Model):
     street2 = models.CharField(max_length=100)
     state = models.CharField(max_length=100, choices=XYZ.choices)
     zip_code = models.CharField(max_length=10)
-    phone = models.BigIntegerField()
+    phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=150)
+    total = models.BigIntegerField(null=True)
+    token = models.CharField(max_length=120, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class LineItem(models.Model):
     quantity = models.BigIntegerField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,related_name='lineItems', on_delete=models.CASCADE)
