@@ -3,8 +3,16 @@ A single-page application for ordering smart home products. The app features a p
 
 View Demo on [Heroku](https://smart-mart.herokuapp.com/)
 
-## Dependencies
-Refer to package.json file for complete list of dependencies.
+Project [[link](https://github.com/yoursmarthome/smart-mart)] 
+
+## Technologies
+Reactjs, Postgres, DJango, Nodejs
+
+## Installation
+Clone this repository on to your local machine:
+
+## Create databse in pstgres
+Run `create_user_script.sql` to create database 
 
 ## Configuration
 Download and install Node for your operating system. Node is available for Mac, Linux and Windows.
@@ -18,21 +26,24 @@ NPM (Node Package Manager) is bundled with Node and allows for easy installation
 `$ npm install`
 
 _This command installs all of the required dependencies listed in the package.json file._
-## Installation
-Clone this repository on to your local machine:
 
-`$ git clone https://github.com/yoursmarthome/smart-mart.git <folder name>`
 
-or download the respository zip file and extract to your local machine.
 
 ## Operating Instructions
 Seed the DB:
 ` $ npm run seed `
-Start the express server:
+
+## python requirements
+`pip instal -r requirements.txt`
+
+
+## Start the express server:
+In one terminal run the following command
 ` $ npm run start-dev `
 View the Smart-Mart application:
-` $ open http://localhost:8080 `
-or
-Open **http://localhost:8080** in your browser
+` $ open http://localhost:8080 ` in your browser (**it will open the nodejs server along with react**)
+
+In other terminal `cd server2` and run `python manage.py runserver`
+
 
 #### Enjoy the app!
