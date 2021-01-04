@@ -25,7 +25,7 @@ const defaultCheckout = {
   phone: '',
   street: '',
   street2: '',
-  state: 'AK',
+  state: 'Delhi',
   zip: ''
 }
 
