@@ -115,3 +115,66 @@ def review_detail(request, pk, format=None):
     elif request.method == 'DELETE':
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def cart_detail(request, pks, format=None):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        abc = pks
+        arrayOfpk = abc.split(",")
+        arr2 = []
+        for i in arrayOfpk:
+            arr2.append(int(i))
+        snippet = Product.objects.annotate(categoryId=F('category')).filter(id__in=arr2).all()
+        print(snippet)
+    except Product.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        print(request.data)
+        print("****************")
+        print(pks)
+        serializer = ProductSerializer(snippet, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = ProductSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+def order_detail(request, format=None):
+    if request.method == 'POST':
+        print(request.data)
+        checkout = request.data['checkout']
+        cart = request.data['cart']
+        user = request.data['user']
+        userObj=User.objects.filter(id=user['id']).first()
+        token = request.data['token']
+        orderObj = Order.objects.create(
+            firstname=checkout['firstName'],
+            lastname=checkout['lastName'],
+            email=checkout['email'],
+            phone=checkout['phone'],
+            street=checkout['street'],
+            street2=checkout['street2'],
+            state=checkout['state'],
+            zip=checkout['zip'],
+            user=userObj
+            )
+        for i in cart['myCart']:
+            product = Product.objects.filter(id=i['id']).first()
+            LineItem.objects.create(quantity=i['quantity'],product=product, order=orderObj)
+        print("*******************")
+        return Response(status=status.HTTP_201_CREATED)
+        

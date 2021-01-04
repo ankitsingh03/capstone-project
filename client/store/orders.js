@@ -22,7 +22,7 @@ const getOrders = orders => ({type: GET_ORDERS, orders})
  */
 export const fetchOrders = (userId) =>
   dispatch =>
-    axios.get(`/api/orders/${userId}`)
+    axios.get(`http://127.0.0.1:8000/api/orders/${userId}`)
       .then(res =>
         dispatch(getOrders(res.data || defaultOrder)))
       .catch(err => console.log(err))

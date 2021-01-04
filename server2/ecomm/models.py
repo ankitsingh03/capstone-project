@@ -43,7 +43,7 @@ class Order(models.Model):
         shipped = 'shipped'
         delivered = 'delivered'
     class XYZ(models.TextChoices):
-        ap = 'Andhra Pradesh'
+        AK = 'AK'
         an = 'Arunachal Pradesh'
         Assam = 'Assam'
         Bihar = 'Bihar'
@@ -63,3 +63,4 @@ class Order(models.Model):
 class LineItem(models.Model):
     quantity = models.BigIntegerField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)

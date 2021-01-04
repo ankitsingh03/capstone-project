@@ -33,7 +33,7 @@ export function fetchProductsForCart (cartItems){
   console.log(idString);
 
   return function thunk (dispatch) {
-    axios.get(`/api/cart/${idString}`)
+    axios.get(`http://127.0.0.1:8000/api/cart/${idString}`)
     .then(res =>
       dispatch(getProductsForCart(res.data || defaultCart)))
     .catch(err => console.log(err))
