@@ -22,6 +22,7 @@ class Cart extends Component {
 
   render() {
     const { cart, cartTotal, products, handleCartClear, view } = this.props
+    console.log(cartTotal)
 
     return (
       <div className="cart-content">

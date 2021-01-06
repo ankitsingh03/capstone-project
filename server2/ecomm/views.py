@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.db.models import Count, Case, When, Value, CharField, IntegerField, F
 from .serializers import CategorySerializer, ProductSerializer, UserSerializer,\
     ReviewSerializer, OrderSerializer, LineItemSerializer
-
+import razorpay
 # Create your views here.
 
 
@@ -192,3 +192,23 @@ def order_detail(request, format=None):
         
         return Response(status=status.HTTP_201_CREATED)
         
+
+@api_view(['GET', 'POST'])
+def payment_process(request, format=None):
+    if request.method == 'POST':
+        print(request.data)
+        client = razorpay.Client(auth=("rzp_test_BXuuvSnv4i88g9","UwnwdougBKgb4Z5Vl0zMiJq6"))
+        order_amount = request.data['amount'] #request.data['amount']
+        order_currency = request.data['currency']
+        order_receipt = request.data['receipt']
+        response = client.order.create(dict(amount=order_amount,
+                            currency=order_currency,
+                            receipt = order_receipt))
+        # print(response)
+        return Response(response)
+
+@api_view(['GET','POST'])
+def payment_complete(request, format=None):
+    if request.method == 'POST':
+        print(request.data)
+    return Response(status=status.HTTP_201_CREATED)
