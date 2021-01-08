@@ -35,7 +35,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email','password', 'role', 'salt', 'googleId', 'facebookId']
+        fields = ['id', 'email','password', 'role', 'salt', 'googleId', 'facebookId']
 
 
 class LineItemSerializer(serializers.ModelSerializer):

@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from ecomm.views import category_list, category_detail, product_list, review_product, review_detail, cart_detail, order_detail, order_list, payment_process, payment_complete
+from ecomm.views import category_list, category_detail, product_list, review_product,\
+    review_detail, cart_detail, order_detail, order_list, payment_process, payment_complete,\
+        user_login, register, get_auth, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +32,8 @@ urlpatterns = [
     path('api/orders/<int:pk>/', order_list),
     path('api/payment/', payment_process),
     path('api/payment_success/', payment_complete),
+    path('auth/login', user_login),
+    path('auth/signup', register),
+    path('auth/me/', get_auth),
+    path('auth/logout', logout_view),
 ]

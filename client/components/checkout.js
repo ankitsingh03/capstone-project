@@ -6,7 +6,7 @@ import { writeFirstName, writeLastName, writeEmail,
   postOrder, clearCart } from '../store'
 import Cart from './cart'
 import _ from 'lodash'
-import PaymentForm from './payment-form'
+import RazorPanel from './payment-form'
 
 class Checkout extends Component {
   constructor(props) {
@@ -150,7 +150,7 @@ class Checkout extends Component {
                   </span> */}
                 </div>
               </form>
-              <PaymentForm callback={this.paymentCallback} />
+              <RazorPanel callback={this.paymentCallback} />
             </div>
             <div className="col-sm-8">
               <Cart view="checkout" />

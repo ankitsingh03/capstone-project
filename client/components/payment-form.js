@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux'
+import cart from '../store/cart';
 class RazorPanel extends Component {
     constructor(props) {
         super(props)
 
     }
+
     
 
-    RequestOrderPayment(){
+    RequestOrderPayment(cartTotal){
       var abc = {
-        "amount": 50000,
+        "amount": cartTotal,
         "currency": "INR",
         "receipt": "rcptid_11"
     }
+    console.log(cartTotal, "helloo***************************")
       fetch('http://127.0.0.1:8000/api/payment/', {
             method: "POST",
             headers: {
@@ -26,7 +29,7 @@ class RazorPanel extends Component {
           var options = {
             "key_id": "rzp_test_BXuuvSnv4i88g9",
             "key_secret": "UwnwdougBKgb4Z5Vl0zMiJq6",
-            "amount": data.amount*100,
+            "amount": cartTotal*100,
             "currency": data.currency,
             "name": "Acme Corp",
             "description": "A Wild Sheep Chase is the third novel by Japanese author  Haruki Murakami",
@@ -51,11 +54,25 @@ class RazorPanel extends Component {
                 
 
     render() {
+        
+        const {cartTotal} = this.props
+        console.log(cartTotal,"hiiii *******")
+
+
         return (
             <div>
-                <button id="rzp-button1" onClick={() => this.RequestOrderPayment()}>Pay</button>
+                <button id="rzp-button1" onClick={() => this.RequestOrderPayment(cartTotal)}>Pay</button>
             </div>
         )
     }
 }
-export default RazorPanel;
+const mapState = (state) => {
+    return {
+    //   cart: state.cart.myCart,
+      cartTotal: state.cart.total,
+    //   products: state.cartProducts
+    }
+}
+export default connect(mapState)(RazorPanel)
+
+// export default RazorPanel;

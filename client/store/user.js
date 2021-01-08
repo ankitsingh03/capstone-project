@@ -23,14 +23,14 @@ const removeUser = () => ({type: REMOVE_USER})
  */
 export const me = () =>
   dispatch =>
-    axios.get('/auth/me')
+    axios.get('http://127.0.0.1:8000/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
   dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
+    axios.post(`http://127.0.0.1:8000/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
         history.push('/home')
@@ -41,7 +41,7 @@ export const auth = (email, password, method) =>
 
 export const logout = () =>
   dispatch =>
-    axios.post('/auth/logout')
+    axios.post('http://127.0.0.1:8000/auth/logout')
       .then(_ => {
         dispatch(removeUser())
         history.push('/login')
