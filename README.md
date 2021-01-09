@@ -45,8 +45,8 @@ View the Smart-Mart application:
 
 
 ## start the django server
-In other terminal `cd server2` and `python manage.py runserver` and run `python manage.py migrate` 
-Run `python manage.py dummy`
+In other terminal `cd server2` and run `python manage.py migrate` 
+Run `python manage.py dummy` and `python manage.py runserver` 
 
 Run the `delete_user_script` file on postgres to delete the database of nodejs
 #### Enjoy the app!
