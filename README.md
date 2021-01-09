@@ -12,7 +12,7 @@ Reactjs, Postgres, DJango, Nodejs
 Clone this repository on to your local machine:
 
 ## Create databse in pstgres
-Run `create_user_script.sql` to create database 
+Run `create_user_script.sql` to create database of nodejs
 
 ## Configuration
 Download and install Node for your operating system. Node is available for Mac, Linux and Windows.
@@ -47,5 +47,5 @@ View the Smart-Mart application:
 ## start the django server
 In other terminal `cd server2` and run `python manage.py migrate` and `python manage.py runserver`
 
-
+Run the `delete_user_script` file on postgres to delete the database of nodejs
 #### Enjoy the app!
