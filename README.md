@@ -34,7 +34,7 @@ Seed the DB:
 ` $ npm run seed `
 
 ## python requirements
-`pip instal -r requirements.txt`
+`pip install -r requirements.txt`
 
 
 ## Start the express server:
@@ -45,7 +45,7 @@ View the Smart-Mart application:
 
 
 ## start the django server
-In other terminal `cd server2` and run `python manage.py runserver`
+In other terminal `cd server2` and run `python manage.py migrate` and `python manage.py runserver`
 
 
 #### Enjoy the app!

@@ -239,18 +239,18 @@ def register(request, format=None):
         registered = True
     return Response(status=status.HTTP_201_CREATED)
 
-@api_view(['GET'])
+# @api_view(['GET'])
 def get_auth(request):
     if request.method == 'GET':
-        print("*********",request.user.email)
+        print("*********",request.user)
         # print(request.data.user.id)
         print("12345678*********")
-        snippet = User.objects.filter(id=2).first()
+        snippet = User.objects.filter(id=request.user.email).first()
         print(snippet.email)
         serializer = UserSerializer(snippet)
         # return HttpResponse(serializer.data) 
          
-    return Response(serializer.data)
+    return JsonResponse(serializer.data)
 
 # @api_view(['POST'])
 @csrf_exempt
