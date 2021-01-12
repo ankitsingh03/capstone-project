@@ -113,6 +113,8 @@ def review_detail(request, pk, format=None):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
+        print("reviews:", request.user.is_authenticated)
+        print(request.user.email)
         serializer = ReviewSerializer(snippet, many=True)
         return Response(serializer.data)
 
@@ -240,28 +242,44 @@ def register(request, format=None):
     return Response(status=status.HTTP_201_CREATED)
 
 # @api_view(['GET'])
+# def get_auth(request):
+#     if request.method == 'GET':
+#         print("*********",request.user)
+#         # print(request.data.user.id)
+#         print("12345678*********")
+#         snippet = User.objects.filter(id=request.user.email).first()
+#         print(snippet.email)
+#         serializer = UserSerializer(snippet)
+#         # return HttpResponse(serializer.data) 
+         
+#     return JsonResponse(serializer.data)
+
+
+@api_view(['GET'])
 def get_auth(request):
     if request.method == 'GET':
-        print("*********",request.user)
-        # print(request.data.user.id)
-        print("12345678*********")
-        snippet = User.objects.filter(id=request.user.email).first()
-        print(snippet.email)
-        serializer = UserSerializer(snippet)
-        # return HttpResponse(serializer.data) 
+        if request.user.is_authenticated:
+            print("*********",request.user)
+            print("12345678*********")
+            snippet = User.objects.filter(id=request.user.id).first()
+            print(snippet.email)
+            serializer = UserSerializer(snippet)
+            return Response(serializer.data)
+        else:
+            return Response({"error":"No User"}, status=403)
          
-    return JsonResponse(serializer.data)
+    # return Response(serializer.data)
 
-# @api_view(['POST'])
+
 @csrf_exempt
-def user_login(request, format=None):
+def user_login(request):
     if request.method == 'POST':
         data = request.body.decode("UTF-8")
         abc = ast.literal_eval(data)
         print(type(abc))
         email = abc['email']
         password = abc['password']
-        user = authenticate(email=email, password=password)
+        user = authenticate(request, email=email, password=password)
         if user:
             print("******acive*****")
             if user.is_active:
@@ -273,7 +291,9 @@ def user_login(request, format=None):
                 serializer = UserSerializer(snippet)
         else:
             print("afhao;ffoiaf;fa;eihaafhlaiufhiaufhkagfk")
+            return HttpResponse({"error":"No User"},status=403)
     return JsonResponse(serializer.data)
+
 
 
 @api_view(['POST'])
@@ -283,3 +303,27 @@ def logout_view(request):
         print("auhfulahfluhfuahfhufpauhf;ahufauhfahuf;iah;a;ifhuifhlzhfzuifh")
         logout(request)
     return Response(status=status.HTTP_201_CREATED)
+
+
+# @api_view(['POST'])
+# @csrf_exempt
+# def user_login(request, format=None):
+#     if request.method == 'POST':
+#         data = request.body.decode("UTF-8")
+#         abc = ast.literal_eval(data)
+#         print(type(abc))
+#         email = abc['email']
+#         password = abc['password']
+#         user = authenticate(email=email, password=password)
+#         if user:
+#             print("******acive*****")
+#             if user.is_active:
+#                 login(request, user)
+
+#                 print(user.is_authenticated)
+#                 print(user.id)
+#                 snippet = User.objects.filter(id=user.id).first()
+#                 serializer = UserSerializer(snippet)
+#         else:
+#             print("afhao;ffoiaf;fa;eihaafhlaiufhiaufhkagfk")
+#     return Response(serializer.data)
