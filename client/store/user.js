@@ -23,7 +23,7 @@ const removeUser = () => ({type: REMOVE_USER})
  */
 export const me = () =>
   dispatch =>
-    axios.get('http://127.0.0.1:8000/auth/me')
+    axios.get('http://127.0.0.1:8000/auth/me', {withCredentials: true})
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
@@ -33,7 +33,7 @@ export const auth = (email, password, method) =>
     axios.post(`http://127.0.0.1:8000/auth/${method}`, { email, password })
       .then(res => {
         dispatch(getUser(res.data))
-        history.push('/home')
+        history.push('/')
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({error: authError}))
       })
@@ -44,7 +44,7 @@ export const logout = () =>
     axios.post('http://127.0.0.1:8000/auth/logout')
       .then(_ => {
         dispatch(removeUser())
-        history.push('/login')
+        history.push('/')
       })
       .catch(err => console.log(err))
 

@@ -4,21 +4,20 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import UserForm
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.db.models import Count, Case, When, Value, CharField, IntegerField, F
 from .serializers import CategorySerializer, ProductSerializer, UserSerializer,\
     ReviewSerializer, OrderSerializer, LineItemSerializer
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.views.decorators.csrf import ensure_csrf_cookie,csrf_exempt
-from django.views.decorators.http import require_POST
-from django.middleware.csrf import get_token
+from django.views.decorators.csrf import csrf_exempt
 import json
-import ast
 import razorpay
 # Create your views here.
+
+
+def index(request):
+    return render(request, 'index.html')
 
 
 @api_view(['GET', 'POST'])
@@ -96,9 +95,9 @@ def review_product(request, format=None):
         rating = int(request.data['rating'])
         userId = int(request.data['userId'])
         productId = int(request.data['productId'])
-        a = User.objects.filter(id=userId).first()
-        b = Product.objects.filter(id=productId).first()
-        Review.objects.create(title=title, content=content, rating=rating, user=a, product=b)
+        select_user = User.objects.filter(id=userId).first()
+        select_product = Product.objects.filter(id=productId).first()
+        Review.objects.create(title=title, content=content, rating=rating, user=select_user, product=select_product)
         return Response(status=status.HTTP_201_CREATED)
 
 
@@ -136,12 +135,12 @@ def cart_detail(request, pks, format=None):
     Retrieve, update or delete a code snippet.
     """
     try:
-        abc = pks
-        arrayOfpk = abc.split(",")
-        arr2 = []
-        for i in arrayOfpk:
-            arr2.append(int(i))
-        snippet = Product.objects.annotate(categoryId=F('category')).filter(id__in=arr2).all()
+        pk_list = pks
+        array_of_pk = pk_list.split(",")
+        array_of_pk_filtered = []
+        for i in array_of_pk:
+            array_of_pk_filtered.append(int(i))
+        snippet = Product.objects.annotate(categoryId=F('category')).filter(id__in=array_of_pk_filtered).all()
         print(snippet)
     except Product.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
@@ -258,6 +257,7 @@ def register(request, format=None):
 @api_view(['GET'])
 def get_auth(request):
     if request.method == 'GET':
+        print(request.data)
         if request.user.is_authenticated:
             print("*********",request.user)
             print("12345678*********")
@@ -275,55 +275,28 @@ def get_auth(request):
 def user_login(request):
     if request.method == 'POST':
         data = request.body.decode("UTF-8")
-        abc = ast.literal_eval(data)
-        print(type(abc))
-        email = abc['email']
-        password = abc['password']
+        user_data = json.loads(data)
+        print(user_data)
+        email = user_data['email']
+        password = user_data['password']
         user = authenticate(request, email=email, password=password)
         if user:
-            print("******acive*****")
+            print(request.user)
             if user.is_active:
                 login(request, user)
-
-                print(user.is_authenticated)
-                print(user.id)
                 snippet = User.objects.filter(id=user.id).first()
                 serializer = UserSerializer(snippet)
+                return JsonResponse(serializer.data)
         else:
-            print("afhao;ffoiaf;fa;eihaafhlaiufhiaufhkagfk")
-            return HttpResponse({"error":"No User"},status=403)
-    return JsonResponse(serializer.data)
+            return HttpResponse({"error":"No User"}, status=403)
 
 
 
-@api_view(['POST'])
-# @login_required
+# @api_view(['POST'])
+@csrf_exempt
+@login_required
 def logout_view(request):
     if request.method == 'POST':
         print("auhfulahfluhfuahfhufpauhf;ahufauhfahuf;iah;a;ifhuifhlzhfzuifh")
         logout(request)
-    return Response(status=status.HTTP_201_CREATED)
-
-
-# @api_view(['POST'])
-# @csrf_exempt
-# def user_login(request, format=None):
-#     if request.method == 'POST':
-#         data = request.body.decode("UTF-8")
-#         abc = ast.literal_eval(data)
-#         print(type(abc))
-#         email = abc['email']
-#         password = abc['password']
-#         user = authenticate(email=email, password=password)
-#         if user:
-#             print("******acive*****")
-#             if user.is_active:
-#                 login(request, user)
-
-#                 print(user.is_authenticated)
-#                 print(user.id)
-#                 snippet = User.objects.filter(id=user.id).first()
-#                 serializer = UserSerializer(snippet)
-#         else:
-#             print("afhao;ffoiaf;fa;eihaafhlaiufhiaufhkagfk")
-#     return Response(serializer.data)
+    return HttpResponse(status=status.HTTP_201_CREATED)
