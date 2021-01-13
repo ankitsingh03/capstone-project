@@ -112,8 +112,9 @@ def review_product(request, format=None):
         return HttpResponse(status=status.HTTP_201_CREATED)
 
 
-@csrf_exempt
+
 @api_view(['GET', 'PUT', 'DELETE'])
+@csrf_exempt
 def review_detail(request, pk, format=None):
     """
     Retrieve, update or delete a code snippet.
@@ -125,7 +126,7 @@ def review_detail(request, pk, format=None):
 
     if request.method == 'GET':
         print("reviews:", request.user.is_authenticated)
-        print(request.user.email)
+        # print(request.user.email)
         serializer = ReviewSerializer(snippet, many=True)
         return Response(serializer.data)
 

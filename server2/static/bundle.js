@@ -27380,9 +27380,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var socket = (0, _socket2.default)(window.location.origin);
 
-socket.on('connect', function () {
-  console.log('Connected!');
-});
+// socket.on('connect', () => {
+//   console.log('Connected!')
+// })
 
 exports.default = socket;
 
@@ -30077,7 +30077,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function ProductPanel(props) {
   var product = props.product;
 
-
   return _react2.default.createElement(
     'div',
     { className: 'col-sm-4' },
@@ -30087,7 +30086,7 @@ function ProductPanel(props) {
       _react2.default.createElement(
         _reactRouterDom.Link,
         { to: '/products/' + product.id },
-        _react2.default.createElement('img', { className: 'img-responsive', src: product.photo }),
+        _react2.default.createElement('img', { className: 'img-responsive', src: "/" + product.photo }),
         _react2.default.createElement(
           'p',
           { className: 'category-name' },
@@ -30167,13 +30166,13 @@ var SingleProduct = function SingleProduct(props) {
             _react2.default.createElement(_reactImageMagnify2.default, {
               smallImage: {
                 isFluidWidth: true,
-                src: product.photo,
-                srcSet: [product.photo + ' 687w', product.photo + ' 770w', product.photo + ' 861w', product.photo + ' 955w'].join(', '),
+                src: "http://127.0.0.1:8000/" + product.photo,
+                srcSet: ["/" + product.photo + ' 687w', "/" + product.photo + ' 770w', "/" + product.photo + ' 861w', "/" + product.photo + ' 955w'].join(', '),
                 sizes: '(min-width: 480px) 30vw, 80vw'
               },
               largeImage: {
                 alt: '',
-                src: product.photo,
+                src: "/" + product.photo,
                 width: 1200,
                 height: 1200
               }

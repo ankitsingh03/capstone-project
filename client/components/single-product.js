@@ -20,18 +20,18 @@ const SingleProduct = (props) => {
               <ReactImageMagnify {...{
                   smallImage: {
                       isFluidWidth: true,
-                      src: product.photo,
+                      src: "http://127.0.0.1:8000/"+product.photo,
                       srcSet: [
-                          `${product.photo} 687w`,
-                          `${product.photo} 770w`,
-                          `${product.photo} 861w`,
-                          `${product.photo} 955w`
+                          `${"/"+product.photo} 687w`,
+                          `${"/"+product.photo} 770w`,
+                          `${"/"+product.photo} 861w`,
+                          `${"/"+product.photo} 955w`
                       ].join(', '),
                       sizes: '(min-width: 480px) 30vw, 80vw'
                   },
                   largeImage: {
                       alt: '',
-                      src: product.photo,
+                      src: "/"+product.photo,
                       width: 1200,
                       height: 1200
                   }
