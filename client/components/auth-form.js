@@ -32,7 +32,7 @@ function AuthForm (props) {
               {error && error.response && <div> {error.response.data === 'Validation error: Validation notEmpty on password failed' && 'Please Enter A Valid Password'} </div>}
               {error && error.response && <div> {error.response.data === 'Validation error: Validation isEmail on email failed,\nValidation error: Validation notEmpty on password failed' && 'Please Enter A Valid Email and Password'} </div>}
             </form>
-            <a href="/auth/google"><div className="google-signin"></div></a><br/>
+            <a href="/accounts/google/login/callback/"><div className="google-signin"></div></a><br/>
             <a href="/auth/facebook"><div className="facebook-signin"></div></a>
             {
               name === 'login' ?
