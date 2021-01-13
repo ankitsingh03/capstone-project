@@ -18,10 +18,15 @@ from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from ecomm.views import category_list, category_detail, product_list, review_product,\
     review_detail, cart_detail, order_detail, order_list, payment_process, payment_complete,\
-        user_login, register, get_auth, logout_view, index
+        user_login, register, get_auth, logout_view, index, index2, index3
 
 urlpatterns = [
     path('', index),
+    path('login/',index),
+    path('home/', index),
+    path('checkout/', index),
+    path('cart/', index),
+    path('products/<int:pk>', index2),
     path('admin/', admin.site.urls),
     path('api/categories', category_list),
     path('api/categories/<int:pk>/', category_detail),
@@ -32,9 +37,10 @@ urlpatterns = [
     path('api/orders', order_detail),
     path('api/orders/<int:pk>/', order_list),
     path('api/payment/', payment_process),
-    path('api/payment_success/', payment_complete),
+    path('api/payment_success', payment_complete),
     path('auth/login', user_login),
     path('auth/signup', register),
     path('auth/me/', get_auth),
     path('auth/logout', logout_view),
+    path('accounts/', include('allauth.urls')),
 ]

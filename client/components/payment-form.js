@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { browserHistory } from 'react-router';
 import cart from '../store/cart';
 class RazorPanel extends Component {
     constructor(props) {
@@ -7,70 +8,84 @@ class RazorPanel extends Component {
 
     }
 
-    
-
-    RequestOrderPayment(cartTotal){
-      var abc = {
-        "amount": cartTotal,
-        "currency": "INR",
-        "receipt": "rcptid_11"
-    }
-    console.log(cartTotal, "helloo***************************")
-      fetch('http://127.0.0.1:8000/api/payment/', {
+    RequestOrderPayment(cartTotal, checkout, cart) {
+        var info = {
+            "amount": cartTotal,
+            "currency": "INR",
+            "receipt": "rcptid_11",
+        }
+        fetch('http://127.0.0.1:8000/api/payment/', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(abc)
+            body: JSON.stringify(info)
         })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          var options = {
-            "key_id": "rzp_test_BXuuvSnv4i88g9",
-            "key_secret": "UwnwdougBKgb4Z5Vl0zMiJq6",
-            "amount": cartTotal*100,
-            "currency": data.currency,
-            "name": "Acme Corp",
-            "description": "A Wild Sheep Chase is the third novel by Japanese author  Haruki Murakami",
-            "order_id": data.id,
-            "callback_url": "http://127.0.0.1:8000/api/payment_success/",
-            "prefill": {
-                "name": "Gaurav Kumar",
-                "email": "gaurav.kumar@example.com",
-                "contact": "9999999999",
-            },
-            "notes": {
-                "address": "note value",
-            },
-            "theme": {
-                "color": "#F37254"
+            .then(response => response.json())
+            .then(data => {
+                var options = {
+                    "key_id": "rzp_test_BXuuvSnv4i88g9",
+                    "key_secret": "UwnwdougBKgb4Z5Vl0zMiJq6",
+                    "amount": cartTotal * 100,
+                    "currency": data.currency,
+                    "name": "Acme Corp",
+                    "description": "A Wild Sheep Chase is the third novel by Japanese author  Haruki Murakami",
+                    "order_id": data.id,
+                    handler(response) {
+                        var body = {
+                            "payment_id": response.razorpay_payment_id,
+                            "order_id": response.razorpay_order_id,
+                            "signature": response.razorpay_signature,
+                            "amount": cartTotal * 100,
+                            "currency": data.currency,
+                            "cart": cart,
+                            "checkout":checkout
+                        }
+                        fetch('http://127.0.0.1:8000/api/payment_success', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(body)
+                        })
+                    },
+                    "prefill": {
+                        "name": "Akshay Deshmukh",
+                        "email": "a@g.com",
+                        "contact": "9033282535",
+                    },
+                    "notes": {
+                        "address": "abc",
+                    },
+                    "theme": {
+                        "color": "#F37254"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                    alert(response.error.description);
+                });
+                rzp1.open();
             }
-        };
-        var rzp1 = new window.Razorpay(options);
-        rzp1.open();
+            )
     }
-        )}
-                
+
 
     render() {
-        
-        const {cartTotal} = this.props
-        console.log(cartTotal,"hiiii *******")
 
-
+        const { cartTotal, cart, checkout } = this.props
         return (
             <div>
-                <button id="rzp-button1" onClick={() => this.RequestOrderPayment(cartTotal)}>Pay</button>
+                <button id="rzp-button1" onClick={() => this.RequestOrderPayment(cartTotal, checkout, cart)}>Pay</button>
             </div>
         )
     }
 }
 const mapState = (state) => {
     return {
-    //   cart: state.cart.myCart,
-      cartTotal: state.cart.total,
-    //   products: state.cartProducts
+        cart: state.cart.myCart,
+        cartTotal: state.cart.total,
+        checkout: state.checkout
     }
 }
 export default connect(mapState)(RazorPanel)
