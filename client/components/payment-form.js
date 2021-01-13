@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router';
 import cart from '../store/cart';
+import user from '../store/user';
 class RazorPanel extends Component {
     constructor(props) {
         super(props)
@@ -70,22 +71,29 @@ class RazorPanel extends Component {
             )
     }
 
-
     render() {
 
-        const { cartTotal, cart, checkout } = this.props
+        const { cartTotal, cart, checkout, user } = this.props
         return (
+
             <div>
-                <button id="rzp-button1" onClick={() => this.RequestOrderPayment(cartTotal, checkout, cart)}>Pay</button>
+                {
+                    
+                    user.id
+                ?<button id="rzp-button1" onClick={() => this.RequestOrderPayment(cartTotal, checkout, cart)}>Pay</button> 
+                :<p>Please Login To proceed to Order</p>
+                }
             </div>
         )
     }
 }
 const mapState = (state) => {
     return {
+        user: state.user,
         cart: state.cart.myCart,
         cartTotal: state.cart.total,
         checkout: state.checkout
+
     }
 }
 export default connect(mapState)(RazorPanel)
