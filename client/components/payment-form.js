@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { clearCart } from '../store'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router';
 import cart from '../store/cart';
@@ -12,7 +13,7 @@ class RazorPanel extends Component {
     RequestOrderPayment(cartTotal, checkout, cart) {
         var info = {
             "amount": cartTotal,
-            "currency": "INR",
+            "currency": "USD",
             "receipt": "rcptid_11",
         }
         fetch('http://127.0.0.1:8000/api/payment/', {
@@ -29,8 +30,7 @@ class RazorPanel extends Component {
                     "key_secret": "UwnwdougBKgb4Z5Vl0zMiJq6",
                     "amount": cartTotal * 100,
                     "currency": data.currency,
-                    "name": "Acme Corp",
-                    "description": "A Wild Sheep Chase is the third novel by Japanese author  Haruki Murakami",
+                    "name": "Smart Mart",
                     "order_id": data.id,
                     handler(response) {
                         var body = {
@@ -51,12 +51,9 @@ class RazorPanel extends Component {
                         })
                     },
                     "prefill": {
-                        "name": "Akshay Deshmukh",
-                        "email": "a@g.com",
-                        "contact": "9033282535",
-                    },
-                    "notes": {
-                        "address": "abc",
+                        "name": checkout.firstname,
+                        "email": checkout.email,
+                        "contact": checkout.phone,
                     },
                     "theme": {
                         "color": "#F37254"
@@ -80,7 +77,7 @@ class RazorPanel extends Component {
                 {
                     
                     user.id
-                ?<button id="rzp-button1" onClick={() => this.RequestOrderPayment(cartTotal, checkout, cart)}>Pay</button> 
+                ?<button id="rzp-button1" onClick={() => {this.RequestOrderPayment(cartTotal, checkout, cart); clearCart();}}>Pay</button> 
                 :<p>Please Login To proceed to Order</p>
                 }
             </div>

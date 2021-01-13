@@ -40,7 +40,7 @@ class Command(BaseCommand):
                     and manage everyday tasks. Google Home is compatible with\
                     Android and iOS operating systems, and can control \
                     compatible smart devices such as Chromecast or Nest.',
-                photo='../assets/images/products/Google_Home_3.jpg',
+                photo='static/assets/images/products/Google_Home_3.jpg',
                 rating=3,
                 price=128.99,
                 category=Category.objects.filter(
@@ -58,7 +58,7 @@ class Command(BaseCommand):
                     others for a more personalized experience. Google Home\
                     Mini works on its own or you can have a few around the\
                     house, giving you the power of Google anywhere.',
-                photo='../assets/images/products/Google_Home_Mini_1.jpg',
+                photo='static/assets/images/products/Google_Home_Mini_1.jpg',
                 rating=5,
                 price=48.99,
                 category=Category.objects.filter(
@@ -76,7 +76,7 @@ class Command(BaseCommand):
                     from others for a more personalized experience. Google \
                     Home Mini works on its own or you can have a few around \
                     the house, giving you the power of Google anywhere.',
-                photo='../assets/images/products/Google_Home_Mini_ch1.jpg',
+                photo='static/assets/images/products/Google_Home_Mini_ch1.jpg',
                 rating=4,
                 price=48.99,
                 category=Category.objects.filter(
@@ -91,7 +91,7 @@ class Command(BaseCommand):
                     and manage everyday tasks. Google Home is compatible with \
                     Android and iOS operating systems, and can control \
                     compatible smart devices such as Chromecast or Nest.',
-                photo='../assets/images/products/Google_Home_Package.jpg',
+                photo='static/assets/images/products/Google_Home_Package.jpg',
                 rating=2,
                 price=157.99,
                 category=Category.objects.filter(
@@ -110,7 +110,7 @@ class Command(BaseCommand):
                 technology so it can hear you from across the room-even while \
                 music is playing. When you want to use Echo, just say the \
                 wake word 'Alexa' and Echo responds instantly.",
-                photo='../assets/images/products/Amazon_Echo_ch1.jpg',
+                photo='static/assets/images/products/Amazon_Echo_ch1.jpg',
                 rating=5,
                 price=119.99,
                 category=Category.objects.filter(
@@ -129,7 +129,7 @@ class Command(BaseCommand):
                 technology so it can hear you from across the room-even while \
                 music is playing. When you want to use Echo, just say the \
                 wake word 'Alexa' and Echo responds instantly.",
-                photo='../assets/images/products/Amazon_Echo_wa1.jpg',
+                photo='static/assets/images/products/Amazon_Echo_wa1.jpg',
                 rating=5,
                 price=119.99,
                 category=Category.objects.filter(
@@ -145,7 +145,7 @@ class Command(BaseCommand):
                     The Amazon Echo Dot voice-controlled device turns any \
                     home into a smart home with the Alexa app \
                     on a smartphone or tablet.',
-                photo='../assets/images/products/Amazon_Echo_Dot1.jpg',
+                photo='static/assets/images/products/Amazon_Echo_Dot1.jpg',
                 rating=4,
                 price=49.99,
                 category=Category.objects.filter(
@@ -161,7 +161,7 @@ class Command(BaseCommand):
                     The Amazon Echo Dot voice-controlled device turns any \
                     home into a smart home with the Alexa app \
                     on a smartphone or tablet.',
-                photo='../assets/images/products/Amazon_Echo_Dot1.jpg',
+                photo='static/assets/images/products/Amazon_Echo_Dot1.jpg',
                 rating=4,
                 price=49.99,
                 category=Category.objects.filter(
@@ -179,7 +179,7 @@ class Command(BaseCommand):
                     speaker includes Microsoft virtual assistant Cortana \
                     to answer questions and smart home technology to \
                     streamline tasks.",
-                photo='../assets/images/products/Harman_Invoke_Cortana1.jpg',
+                photo='static/assets/images/products/Harman_Invoke_Cortana1.jpg',
                 rating=5,
                 price=199.99,
                 category=Category.objects.filter(
@@ -196,7 +196,7 @@ class Command(BaseCommand):
                     its operation with movies or music using a compatible app.\
                     Use your smartphone or tablet to control light levels \
                     and set timers on this Philips Hue Bloom lamp.',
-                photo='../assets/images/products/Philips_Hue_Bloom_Table_Lamp2.jpg',
+                photo='static/assets/images/products/Philips_Hue_Bloom_Table_Lamp2.jpg',
                 rating=3,
                 price=59.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -210,7 +210,7 @@ class Command(BaseCommand):
                     and it lets you sync its movement with music or movies \
                     via third-party apps. Bend, shape and cut this Philips \
                     Hue LED light strip for flexible customization.',
-                photo='../assets/images/products/Phillips_Hue_Lightstrip1.jpg',
+                photo='static/assets/images/products/Phillips_Hue_Lightstrip1.jpg',
                 rating=2,
                 price=85.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -224,7 +224,7 @@ class Command(BaseCommand):
                     Philips Hue app. This Philips Hue white light bulb is \
                     compatible with Alexa, Apple HomeKit and \
                     Google Assistant.',
-                photo='../assets/images/products/Philips_White_Light_Bulb1.jpg',
+                photo='static/assets/images/products/Philips_White_Light_Bulb1.jpg',
                 rating=5,
                 price=14.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -239,7 +239,7 @@ class Command(BaseCommand):
                     through the corresponding app. This Philips hue white and \
                     color ambiance bulb offers 16 million choices in both \
                     warm and cool for versatility.',
-                photo='../assets/images/products/Philips_White_Color_Bulb3.jpg',
+                photo='static/assets/images/products/Philips_White_Color_Bulb3.jpg',
                 rating=1,
                 price=49.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -253,7 +253,7 @@ class Command(BaseCommand):
                     need it, and it allows you to go to sleep by slowly \
                     dimming the candle. Integrate this Philips Hue candle \
                     bulb with your smartphone for even more options.',
-                photo='../assets/images/products/Philips_Decorative_Light_Bulb1.jpg',
+                photo='static/assets/images/products/Philips_Decorative_Light_Bulb1.jpg',
                 rating=3,
                 price=29.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -267,7 +267,7 @@ class Command(BaseCommand):
                     This Nanoleaf Aurora Rhythm starter kit works with the \
                     Nanoleaf Aurora app, so you can customize the display \
                     via a mobile device.',
-                photo='../assets/images/products/Nanoleaf_Aurora_Starter1.jpg',
+                photo='static/assets/images/products/Nanoleaf_Aurora_Starter1.jpg',
                 rating=4,
                 price=229.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -280,7 +280,7 @@ class Command(BaseCommand):
                     lighting with HomeKit for your iOS 9-powered Apple® \
                     iPhone®. Plus, connect your existing Zigbee and Wink \
                     home automation products.',
-                photo='../assets/images/products/Philips_Hue_Bridge1.jpg',
+                photo='static/assets/images/products/Philips_Hue_Bridge1.jpg',
                 rating=5,
                 price=52.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -292,7 +292,7 @@ class Command(BaseCommand):
                     of a button. Great as a backup when your smartphone is \
                     charging or in use, the hue tap provides wireless, \
                     touch-powered control from room to room',
-                photo='../assets/images/products/Philips_Tap1.jpg',
+                photo='static/assets/images/products/Philips_Tap1.jpg',
                 rating=3,
                 price=52.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -307,7 +307,7 @@ class Command(BaseCommand):
                     Pico remotes with this Caseta wireless dimmer kit \
                     complete the collection for smart-enabled wall \
                     and ceiling lighting.',
-                photo='../assets/images/products/Lutron_Dimmer_Kit1.jpg',
+                photo='static/assets/images/products/Lutron_Dimmer_Kit1.jpg',
                 rating=4,
                 price=99.99,
                 category=Category.objects.filter(name='Lighting').first()
@@ -325,7 +325,7 @@ class Command(BaseCommand):
                     Media EQ fine tunes the speaker so every song sounds \
                     its best. It's software that keeps getting smarter \
                     thanks to automatic updates.",
-                photo='../assets/images/products/Google_Home_Max_1.jpg',
+                photo='static/assets/images/products/Google_Home_Max_1.jpg',
                 rating=5,
                 price=399.99,
                 category=Category.objects.filter(name='Home Theater').first()
@@ -341,7 +341,7 @@ class Command(BaseCommand):
                     sound based on where you place it. Media EQ fine tunes \
                     the speaker so every song sounds its best. It's software \
                     that keeps getting smarter thanks to automatic updates.",
-                photo='../assets/images/products/Google_Home_Max_Ch1.jpg',
+                photo='static/assets/images/products/Google_Home_Max_Ch1.jpg',
                 rating=5,
                 price=399.99,
                 category=Category.objects.filter(name='Home Theater').first()
@@ -355,7 +355,7 @@ class Command(BaseCommand):
                     bills. This Nest Third Generation Learning thermostat \
                     programs itself to adjust the temperature according to \
                     your schedule.",
-                photo='../assets/images/products/Nest_thermo_black1.jpg',
+                photo='static/assets/images/products/Nest_thermo_black1.jpg',
                 rating=5,
                 price=247.99,
                 category=Category.objects.filter(
@@ -372,7 +372,7 @@ class Command(BaseCommand):
                     regulate your home's temperature based on your schedule. \
                     The Nest Leaf feature alerts you when you choose a \
                     temperature that's energy efficient.",
-                photo='../assets/images/products/Nest_Thermo_Silver1.jpg',
+                photo='static/assets/images/products/Nest_Thermo_Silver1.jpg',
                 rating=5,
                 price=249.99,
                 category=Category.objects.filter(
@@ -386,7 +386,7 @@ class Command(BaseCommand):
                     the Nest Thermostat E can help you save from day one. \
                     And you can change the temperature from anywhere – the\
                     beach, the office or your bed.",
-                photo='../assets/images/products/Nest_White_1.jpg',
+                photo='static/assets/images/products/Nest_White_1.jpg',
                 rating=4,
                 price=169.99,
                 category=Category.objects.filter(
@@ -403,7 +403,7 @@ class Command(BaseCommand):
                     Control this Wi-Fi-enabled ecobee3 lite smart \
                     thermostat by voice or remotely from your Android \
                     or iOS device or Apple Watch.",
-                photo='../assets/images/products/Ecobee3_lite1.jpg',
+                photo='static/assets/images/products/Ecobee3_lite1.jpg',
                 rating=4,
                 price=169.99,
                 category=Category.objects.filter(
@@ -422,7 +422,7 @@ class Command(BaseCommand):
                     can detect occupancy, they can automatically enable the \
                     right mode on your ecobee4 for energy savings when it \
                     senses no one is home.",
-                photo='../assets/images/products/Ecobee4_thermo1.jpg',
+                photo='static/assets/images/products/Ecobee4_thermo1.jpg',
                 rating=5,
                 price=249.99,
                 category=Category.objects.filter(
@@ -434,7 +434,7 @@ class Command(BaseCommand):
                 description="The right temperature in the right places. \
                     These wireless room sensors work with ecobee4, ecobee3 \
                     Lite, and ecobee3 Wi-Fi smart thermostats.",
-                photo='../assets/images/products/ecobees_sensors1.jpg',
+                photo='static/assets/images/products/ecobees_sensors1.jpg',
                 rating=3,
                 price=66.99,
                 category=Category.objects.filter(
@@ -451,7 +451,7 @@ class Command(BaseCommand):
                     up, just a fraction of the cost of other home monitoring \
                     systems and has no subscription fees or data \
                     storage charges.",
-                photo='../assets/images/products/Blink_White_1.jpg',
+                photo='static/assets/images/products/Blink_White_1.jpg',
                 rating=4,
                 price=169.99,
                 category=Category.objects.filter(
@@ -466,7 +466,7 @@ class Command(BaseCommand):
                     Powered Outdoor Security Camera Available! A truly \
                     wire-free video home security camera & monitoring system \
                     with batteries that last for 2 year",
-                photo='../assets/images/products/Blink_Black_1.jpg',
+                photo='static/assets/images/products/Blink_Black_1.jpg',
                 rating=5,
                 price=319.99,
                 category=Category.objects.filter(
@@ -482,7 +482,7 @@ class Command(BaseCommand):
                     Remote access to the camera bulb on Smartphone via your \
                     mobile 4G network or WiFi. Allow users to access the \
                     wireless wifi lens camera using mobile phone.",
-                photo='../assets/images/products/Camera_blub1.jpg',
+                photo='static/assets/images/products/Camera_blub1.jpg',
                 rating=3,
                 price=49.99,
                 category=Category.objects.filter(
@@ -498,7 +498,7 @@ class Command(BaseCommand):
                     clearer communication. Review the recorded recent \
                     activity outside your home via the three-hour snapshot \
                     history of this Nest Hello video doorbell.",
-                photo='../assets/images/products/nest_doorbell_1.jpg',
+                photo='static/assets/images/products/nest_doorbell_1.jpg',
                 rating=5,
                 price=229.99,
                 category=Category.objects.filter(
@@ -513,7 +513,7 @@ class Command(BaseCommand):
                     in on their face. Use the Nest app to control the camera, \
                     watch live, and view a detailed snapshot \
                     history of events.",
-                photo='../assets/images/products/Nest_indoor_cam1.jpg',
+                photo='static/assets/images/products/Nest_indoor_cam1.jpg',
                 rating=4,
                 price=299.99,
                 category=Category.objects.filter(
@@ -527,7 +527,7 @@ class Command(BaseCommand):
                     to show you an extra clear close-up tracking shot of \
                     who’s there. It can even recognize familiar faces \
                     with Nest Aware.",
-                photo='../assets/images/products/nest_outdoor_cam1.jpg',
+                photo='static/assets/images/products/nest_outdoor_cam1.jpg',
                 rating=4,
                 price=349.99,
                 category=Category.objects.filter(

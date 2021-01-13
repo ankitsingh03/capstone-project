@@ -25,10 +25,6 @@ def index2(request, pk):
     reviews = Review.objects.filter(id=pk).all()
     return render(request, 'index.html')
 
-@csrf_exempt
-def index3(request,pk):
-    return render(request, 'index.html')
-
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -262,7 +258,7 @@ def payment_process(request, format=None):
         order_amount = float(data['amount']) #data['amount']
         order_currency = data['currency']
         order_receipt = data['receipt']
-        response = client.order.create(dict(amount=int(order_amount),
+        response = client.order.create(dict(amount=int(order_amount)*100,
                             currency=order_currency,
                             receipt = order_receipt))
         # print(response)

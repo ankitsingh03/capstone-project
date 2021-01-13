@@ -6,7 +6,7 @@ export default function StarRating(props) {
   return (
     <div>
      {
-       <img className="star-rating" src={`/assets/stars/Star_rating_${rating}_of_5.png`} />
+       <img className="star-rating" src={`/static/assets/stars/Star_rating_${rating}_of_5.png`} />
      }
     </div>
   )
