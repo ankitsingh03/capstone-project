@@ -67,7 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class DEF(models.TextChoices):
         user = 'user'
         admin ='admin'
-
+    username = models.CharField(_('username'), max_length=30, blank=True)
     email = models.EmailField(unique=True, max_length=255, blank=False)
     password = models.CharField(max_length=200)
     role = models.CharField(max_length=20, choices=DEF.choices, default=DEF.user)

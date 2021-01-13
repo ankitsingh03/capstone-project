@@ -28679,7 +28679,7 @@ function AuthForm(props) {
           ),
           _react2.default.createElement(
             'a',
-            { href: '/auth/google' },
+            { href: '/accounts/google/login/callback/' },
             _react2.default.createElement('div', { className: 'google-signin' })
           ),
           _react2.default.createElement('br', null),
