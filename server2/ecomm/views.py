@@ -100,7 +100,6 @@ def product_list(request, format=None):
 # @api_view(['POST'])
 def review_product(request, format=None):
     if request.method == 'POST':
-        print(request.body)
         data = json.loads(request.body)
         title = data['title']
         content = data['content']
@@ -128,8 +127,6 @@ def review_detail(request, pk, format=None):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        print("reviews:", request.user.is_authenticated)
-        # print(request.user.email)
         serializer = ReviewSerializer(snippet, many=True)
         return Response(serializer.data)
 
@@ -159,14 +156,10 @@ def cart_detail(request, pks, format=None):
             array_of_pk_filtered.append(int(i))
         snippet = Product.objects.annotate(categoryId=F('category'))\
             .filter(id__in=array_of_pk_filtered).all()
-        print(snippet)
     except Product.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        print(request.data)
-        print("****************")
-        print(pks)
         serializer = ProductSerializer(snippet, many=True)
         return Response(serializer.data)
 
@@ -194,41 +187,6 @@ def order_list(request, pk, format=None):
         return Response(serializer.data)
 
 
-# @api_view(['POST'])
-@csrf_exempt
-def order_detail(request, format=None):
-    if request.method == 'POST':
-        print(request.data)
-        checkout = request.data['checkout']
-        cart = request.data['cart']
-        user = request.data['user']
-        token = request.data['token']
-        total = int(float(cart['total']))
-        userObj = User.objects.filter(id=user['id']).first()
-        token = request.data['token']
-        orderObj = Order.objects.create(
-            firstname=checkout['firstName'],
-            lastname=checkout['lastName'],
-            email=checkout['email'],
-            phone=checkout['phone'],
-            street=checkout['street'],
-            street2=checkout['street2'],
-            state=checkout['state'],
-            zip_code=checkout['zip'],
-            user=userObj,
-            token=token,
-            total=total
-            )
-
-        for i in cart['myCart']:
-            product = Product.objects.filter(id=i['id']).first()
-            LineItem.objects.create(
-                quantity=i['quantity'], product=product, order=orderObj
-                )
-
-        return HttpResponse(status=status.HTTP_201_CREATED)
-
-
 # @api_view(['GET', 'POST'])
 @csrf_exempt
 def payment_process(request, format=None):
@@ -251,10 +209,8 @@ def payment_process(request, format=None):
 # @api_view(['GET','POST'])
 @csrf_exempt
 def payment_complete(request, format=None):
-    print(request.user.id)
     if request.method == 'POST':
         data = json.loads(request.body)
-        print(data)
         checkout = data['checkout']
         cart = data['cart']
         user_id = request.user.id
@@ -313,12 +269,10 @@ def user_login(request):
     if request.method == 'POST':
         data = request.body.decode("UTF-8")
         user_data = json.loads(data)
-        print(user_data)
         email = user_data['email']
         password = user_data['password']
         user = authenticate(request, email=email, password=password)
         if user:
-            print(request.user)
             if user.is_active:
                 login(request, user)
                 snippet = User.objects.filter(id=user.id).first()
@@ -332,6 +286,5 @@ def user_login(request):
 @login_required
 def logout_view(request):
     if request.method == 'POST':
-        print("auhfulahfluhfuahfhufpauhf;ahufauhfahuf;iah;a;ifhuifhlzhfzuifh")
         logout(request)
     return HttpResponse(status=status.HTTP_201_CREATED)

@@ -22711,7 +22711,11 @@ var auth = exports.auth = function auth(email, password, method) {
   return function (dispatch) {
     return _axios2.default.post('http://127.0.0.1:8000/auth/' + method, { email: email, password: password }).then(function (res) {
       dispatch(getUser(res.data));
-      _history2.default.push('/');
+      if (method == 'signup') {
+        _history2.default.push('/login');
+      } else {
+        _history2.default.push('/');
+      }
     }, function (authError) {
       // rare example: a good use case for parallel (non-catch) error handler
       dispatch(getUser({ error: authError }));

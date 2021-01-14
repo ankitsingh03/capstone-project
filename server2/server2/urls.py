@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 # from rest_framework.urlpatterns import format_suffix_patterns
 from ecomm.views import category_list, category_detail, product_list,\
-    review_product, review_detail, cart_detail, order_detail,\
+    review_product, review_detail, cart_detail,\
     order_list, payment_process, payment_complete,\
     user_login, register, get_auth, logout_view, index, index2
 
@@ -35,7 +35,7 @@ urlpatterns = [
     path('api/reviews', review_product),
     path('api/reviews/<int:pk>/', review_detail),
     path('api/cart/<str:pks>', cart_detail),
-    path('api/orders', order_detail),
+    # path('api/orders', order_detail),
     path('api/orders/<int:pk>/', order_list),
     path('api/payment/', payment_process),
     path('api/payment_success', payment_complete),
