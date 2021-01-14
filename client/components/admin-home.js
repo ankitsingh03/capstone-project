@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {fetchProducts} from '../store'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../store'
 
 class AdminHome extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class AdminHome extends Component {
   }
 
   render() {
-    const {email} = this.props
+    const { email } = this.props
 
     return (
       <div className="admin-home-content">
@@ -59,7 +59,7 @@ class AdminHome extends Component {
   }
 
   changeView(view) {
-    this.setState({view, edit: false})
+    this.setState({ view, edit: false })
   }
 
   renderProducts() {
@@ -73,11 +73,11 @@ class AdminHome extends Component {
   }
 
   renderUsers() {
-    const {user} = this.props;
+    const { user } = this.props;
     if (!user) {
       return <div className="col-sm-12"><h2>No User Found.</h2></div>
     } else {
-        return <li key={user.id}><a className="edit-product">{user.id} - {user.email}</a></li>
+      return <li key={user.id}><a className="edit-product">{user.id} - {user.email}</a></li>
     }
   }
 

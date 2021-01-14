@@ -14,7 +14,7 @@ const defaultProducts = []
 /**
  * ACTION CREATORS
  */
-const getCategories = categories => ({type: GET_CATEGORIES, categories})
+const getCategories = categories => ({ type: GET_CATEGORIES, categories })
 
 /**
  * THUNK CREATORS

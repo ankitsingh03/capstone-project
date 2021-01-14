@@ -15,7 +15,7 @@ const defaultOrder = []
  * ACTION CREATORS
  */
 
-const getOrders = orders => ({type: GET_ORDERS, orders})
+const getOrders = orders => ({ type: GET_ORDERS, orders })
 
 /**
  * THUNK CREATORS

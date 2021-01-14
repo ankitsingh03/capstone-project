@@ -1,9 +1,11 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import { writeFirstName, writeLastName, writeEmail,
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import {
+  writeFirstName, writeLastName, writeEmail,
   writePhone, writeStreet, writeStreet2, changeState, writeZip,
-  postOrder, clearCart } from '../store'
+  postOrder, clearCart
+} from '../store'
 import Cart from './cart'
 import _ from 'lodash'
 import RazorPanel from './payment-form'
@@ -37,10 +39,9 @@ class Checkout extends Component {
   }
 
   paymentCallback(token) {
-    // console.log('payment callBack', token)
-    const {checkout, cart, user} = this.props;
+    const { checkout, cart, user } = this.props;
     this.props.handleSubmit(checkout, token, cart, user);
-    this.setState({view: 'done'});
+    this.setState({ view: 'done' });
   }
 
   renderCheckoutForm() {
@@ -49,113 +50,113 @@ class Checkout extends Component {
       handlePhoneChange, handleEmailChange, handleSubmit } = this.props
 
     return (
-          <div>
-            <div className="col-sm-4">
-              <form id="new-message-form">
-                <div className="form-group">
-                  <label htmlFor="firstName">First Name</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="firstName"
-                    value={checkout.firstName}
-                    onChange={handleFirstNameChange}
-                    placeholder="First Name"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="lastName"
-                    value={checkout.lastName}
-                    onChange={handleLastNameChange}
-                    placeholder="Last Name"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="email"
-                    value={checkout.email}
-                    onChange={handleEmailChange}
-                    placeholder="Email"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phone">Phone</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="phone"
-                    value={checkout.phone}
-                    onChange={handlePhoneChange}
-                    placeholder="Phone Number"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="streetAddress">Street Address</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="streetAddress"
-                    value={checkout.street1}
-                    onChange={handleStreet1Change}
-                    placeholder="Street Address"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="streetAddress2">Street Address 2</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="streetAddress2"
-                    value={checkout.street2}
-                    onChange={handleStreet2Change}
-                    placeholder="Street Address 2"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="state">State</label>
-                  <select
-                    className="form-control"
-                    type="text"
-                    name="state"
-                    value={checkout.state}
-                    onChange={handleStateChange}
-                    placeholder="State"
-                  >
-                    {
-                      stateList.map(state => {
-                          return <option key={state} value={`${state}`}>{state}</option>
-                      })
-                  }
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="zipcode">Zip Code</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="zipcode"
-                    value={checkout.zip}
-                    onChange={handleZipChange}
-                    placeholder="Zip Code"
-                  />
-                  {/* <span className="input-group-btn">
+      <div>
+        <div className="col-sm-4">
+          <form id="new-message-form">
+            <div className="form-group">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                className="form-control"
+                type="text"
+                name="firstName"
+                value={checkout.firstName}
+                onChange={handleFirstNameChange}
+                placeholder="First Name"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                className="form-control"
+                type="text"
+                name="lastName"
+                value={checkout.lastName}
+                onChange={handleLastNameChange}
+                placeholder="Last Name"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                className="form-control"
+                type="text"
+                name="email"
+                value={checkout.email}
+                onChange={handleEmailChange}
+                placeholder="Email"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone</label>
+              <input
+                className="form-control"
+                type="text"
+                name="phone"
+                value={checkout.phone}
+                onChange={handlePhoneChange}
+                placeholder="Phone Number"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="streetAddress">Street Address</label>
+              <input
+                className="form-control"
+                type="text"
+                name="streetAddress"
+                value={checkout.street1}
+                onChange={handleStreet1Change}
+                placeholder="Street Address"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="streetAddress2">Street Address 2</label>
+              <input
+                className="form-control"
+                type="text"
+                name="streetAddress2"
+                value={checkout.street2}
+                onChange={handleStreet2Change}
+                placeholder="Street Address 2"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="state">State</label>
+              <select
+                className="form-control"
+                type="text"
+                name="state"
+                value={checkout.state}
+                onChange={handleStateChange}
+                placeholder="State"
+              >
+                {
+                  stateList.map(state => {
+                    return <option key={state} value={`${state}`}>{state}</option>
+                  })
+                }
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="zipcode">Zip Code</label>
+              <input
+                className="form-control"
+                type="text"
+                name="zipcode"
+                value={checkout.zip}
+                onChange={handleZipChange}
+                placeholder="Zip Code"
+              />
+              {/* <span className="input-group-btn">
                     <button className="btn btn-default" type="submit">Enter</button>
                   </span> */}
-                </div>
-              </form>
-              <RazorPanel callback={this.paymentCallback} />
             </div>
-            <div className="col-sm-8">
-              <Cart view="checkout" />
-            </div>
-          </div>
+          </form>
+          <RazorPanel callback={this.paymentCallback} />
+        </div>
+        <div className="col-sm-8">
+          <Cart view="checkout" />
+        </div>
+      </div>
     )
   }
 
@@ -181,31 +182,31 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    handleFirstNameChange (evt) {
+    handleFirstNameChange(evt) {
       dispatch(writeFirstName(evt.target.value))
     },
-    handleLastNameChange (evt) {
+    handleLastNameChange(evt) {
       dispatch(writeLastName(evt.target.value))
     },
-    handleStreet1Change (evt) {
+    handleStreet1Change(evt) {
       dispatch(writeStreet(evt.target.value))
     },
-    handleStreet2Change (evt) {
+    handleStreet2Change(evt) {
       dispatch(writeStreet2(evt.target.value))
     },
-    handleStateChange (evt) {
+    handleStateChange(evt) {
       dispatch(changeState(evt.target.value))
     },
-    handleZipChange (evt) {
+    handleZipChange(evt) {
       dispatch(writeZip(evt.target.value))
     },
-    handlePhoneChange (evt) {
+    handlePhoneChange(evt) {
       dispatch(writePhone(evt.target.value))
     },
-    handleEmailChange (evt) {
+    handleEmailChange(evt) {
       dispatch(writeEmail(evt.target.value))
     },
-    handleSubmit (checkout, token, cart, user) {
+    handleSubmit(checkout, token, cart, user) {
       dispatch(postOrder(checkout, token, cart, user, ownProps.history))
       dispatch(clearCart())
     }

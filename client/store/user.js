@@ -15,15 +15,15 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
+const getUser = user => ({ type: GET_USER, user })
+const removeUser = () => ({ type: REMOVE_USER })
 
 /**
  * THUNK CREATORS
  */
 export const me = () =>
   dispatch =>
-    axios.get('http://127.0.0.1:8000/auth/me', {withCredentials: true})
+    axios.get('http://127.0.0.1:8000/auth/me', { withCredentials: true })
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
@@ -35,7 +35,7 @@ export const auth = (email, password, method) =>
         dispatch(getUser(res.data))
         history.push('/')
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
+        dispatch(getUser({ error: authError }))
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 

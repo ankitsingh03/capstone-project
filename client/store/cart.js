@@ -20,11 +20,11 @@ const defaultCart = { myCart: [], total: 0 }
 /**
  * ACTION CREATORS
  */
-const getCart = cart => ({type: GET_CART, cart})
+const getCart = cart => ({ type: GET_CART, cart })
 
 export const clearCart = () => {
   localStorage.removeItem('cart');
-  return {type: CLEAR_CART}
+  return { type: CLEAR_CART }
 }
 
 export const removeItem = id => {
@@ -38,7 +38,7 @@ export const removeItem = id => {
   })
   let stringCart = JSON.stringify(currentCart)
   localStorage.setItem('cart', stringCart)
-  return {type: REMOVE_ITEM, currentCart}
+  return { type: REMOVE_ITEM, currentCart }
 }
 
 export const removeAllItem = id => {
@@ -51,27 +51,17 @@ export const removeAllItem = id => {
   })
   let stringCart = JSON.stringify(currentCart)
   localStorage.setItem('cart', stringCart)
-  return {type: REMOVE_ITEM, currentCart}
+  return { type: REMOVE_ITEM, currentCart }
 }
-
-/**
- * THUNK CREATORS
- */
-// export const fetchCart = () =>
-//   dispatch =>
-//     axios.get('/api/categories')
-//       .then(res =>
-//         dispatch(getCategories(res.data || defaultProduct)))
-//       .catch(err => console.log(err))
 
 export const fetchCart = () => {
   const currentCart = JSON.parse(localStorage.getItem('cart'))
-  if (currentCart !== null) return ({type: ADD_TO_CART, currentCart})
-  else return ({type: ADD_TO_CART, currentCart: defaultCart})
+  if (currentCart !== null) return ({ type: ADD_TO_CART, currentCart })
+  else return ({ type: ADD_TO_CART, currentCart: defaultCart })
 }
 
 export const addToCart = (id, price) => {
-  const newProduct = {id: id, price: price, quantity: 1}
+  const newProduct = { id: id, price: price, quantity: 1 }
   let currentCart = JSON.parse(localStorage.getItem('cart'))
   let stringCart = ''
   if (currentCart) {
@@ -85,19 +75,19 @@ export const addToCart = (id, price) => {
     if (!found) currentCart.myCart.push(newProduct)
   }
   else {
-    currentCart = {myCart: [newProduct], total: 0}
+    currentCart = { myCart: [newProduct], total: 0 }
   }
   calcTotal(currentCart)
   stringCart = JSON.stringify(currentCart)
   localStorage.setItem('cart', stringCart)
-  return ({type: ADD_TO_CART, currentCart})
+  return ({ type: ADD_TO_CART, currentCart })
 }
 
 const calcTotal = (cart) => {
   cart.total = 0
   cart.myCart.map(item => {
     const productPrice = (item.price * 1)
-    const currentTotal = ((productPrice * item.quantity) * 1 ).toFixed(2)
+    const currentTotal = ((productPrice * item.quantity) * 1).toFixed(2)
     cart.total = ((+cart.total + +currentTotal) * 1).toFixed(2)
   })
   return cart

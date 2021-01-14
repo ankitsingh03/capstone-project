@@ -1,14 +1,14 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
-import {withRouter, Link} from 'react-router-dom'
+import { auth } from '../store'
+import { withRouter, Link } from 'react-router-dom'
 
 /**
  * COMPONENT
  */
-function AuthForm (props) {
-  const {name, displayName, handleSubmit, error} = props
+function AuthForm(props) {
+  const { name, displayName, handleSubmit, error } = props
 
   return (
     <div className="login-content">
@@ -19,7 +19,7 @@ function AuthForm (props) {
             <form className="" onSubmit={handleSubmit} name={name}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input name="email" className="form-control"  type="text" />
+                <input name="email" className="form-control" type="text" />
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
@@ -32,12 +32,12 @@ function AuthForm (props) {
               {error && error.response && <div> {error.response.data === 'Validation error: Validation notEmpty on password failed' && 'Please Enter A Valid Password'} </div>}
               {error && error.response && <div> {error.response.data === 'Validation error: Validation isEmail on email failed,\nValidation error: Validation notEmpty on password failed' && 'Please Enter A Valid Email and Password'} </div>}
             </form>
-            <a href="/accounts/google/login/"><div className="google-signin"></div></a><br/>
+            <a href="/accounts/google/login/"><div className="google-signin"></div></a><br />
             <a href="/accounts/facebook/login/"><div className="facebook-signin"></div></a>
             {
               name === 'login' ?
-              <p className="signup-login-link">Don't have an account? <Link to="/signup">Sign Up</Link></p> :
-              <p className="signup-login-link">Already have an account? <Link to="/login">Login</Link></p>
+                <p className="signup-login-link">Don't have an account? <Link to="/signup">Sign Up</Link></p> :
+                <p className="signup-login-link">Already have an account? <Link to="/login">Login</Link></p>
             }
 
           </div>
@@ -72,7 +72,7 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit (evt) {
+    handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value

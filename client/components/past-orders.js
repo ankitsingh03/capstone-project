@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
 import { fetchOrders } from '../store'
 
 class PastOrders extends Component {
 
   componentDidMount() {
-   this.props.handleFetchOrders(this.props.user.id)
+    this.props.handleFetchOrders(this.props.user.id)
   }
 
   render() {
-
-    console.log(this.props.orders)
     return (
       <div>
         <div>
@@ -20,7 +18,7 @@ class PastOrders extends Component {
         </div>
         {
           this.props.orders.map(order => (
-            order.lineItems.map( lineItem => (
+            order.lineItems.map(lineItem => (
               <div key={lineItem.id}>
                 <div className="col-sm-1">
                   <ul className="list-inline qty-list">
@@ -28,7 +26,7 @@ class PastOrders extends Component {
                   </ul>
                 </div>
                 <div className="col-sm-1">
-                 <img src={lineItem.product.photo} className="img-responsive" />
+                  <img src={lineItem.product.photo} className="img-responsive" />
                 </div>
                 <div className="col-sm-5">
                   <h4> {lineItem.product.name} </h4>
@@ -48,7 +46,7 @@ class PastOrders extends Component {
             ))
           ))
         }
-       </div>
+      </div>
     )
   }
 }
@@ -64,12 +62,12 @@ const mapState = (state, ownProps) => {
   }
 }
 
- const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch) => {
   return {
-    handleFetchOrders (id) {
+    handleFetchOrders(id) {
       dispatch(fetchOrders(id))
     }
   }
- }
+}
 
 export default connect(mapState, mapDispatch)(PastOrders)

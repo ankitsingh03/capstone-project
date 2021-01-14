@@ -15,12 +15,12 @@ const defaultProducts = []
  * ACTION CREATORS
  */
 // const getProduct = product => ({type: GET_PRODUCT, product})
-const getProductsForCart = products => ({type: GET_PRODUCTS_FOR_CART, products})
+const getProductsForCart = products => ({ type: GET_PRODUCTS_FOR_CART, products })
 
 /**
  * THUNK CREATORS
  */
-export function fetchProductsForCart (cartItems){
+export function fetchProductsForCart(cartItems) {
   let idArray = []
   const defaultCart = []
 
@@ -30,13 +30,11 @@ export function fetchProductsForCart (cartItems){
 
   const idString = idArray.join(',');
 
-  console.log(idString);
-
-  return function thunk (dispatch) {
+  return function thunk(dispatch) {
     axios.get(`http://127.0.0.1:8000/api/cart/${idString}`)
-    .then(res =>
-      dispatch(getProductsForCart(res.data || defaultCart)))
-    .catch(err => console.log(err))
+      .then(res =>
+        dispatch(getProductsForCart(res.data || defaultCart)))
+      .catch(err => console.log(err))
   }
 }
 

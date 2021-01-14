@@ -1,23 +1,23 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Route, Switch, Router} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 
-import {AdminHome, Main, Checkout, Cart, Home, Login, Signup, UserHome, SingleProduct} from './components'
-import {me, fetchProducts, fetchCategories, fetchCart} from './store'
+import { AdminHome, Main, Checkout, Cart, Home, Login, Signup, UserHome, SingleProduct } from './components'
+import { me, fetchProducts, fetchCategories, fetchCart } from './store'
 
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn, role} = this.props
+  render() {
+    const { isLoggedIn, role } = this.props
 
     return (
       <Router history={history}>
@@ -36,8 +36,8 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 {
                   role === 'admin' ?
-                  <Route path="/home" component={AdminHome} /> :
-                  <Route path="/home" component={UserHome} />
+                    <Route path="/home" component={AdminHome} /> :
+                    <Route path="/home" component={UserHome} />
                 }
               </Switch>
             }
@@ -65,7 +65,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
       dispatch(fetchProducts())
       dispatch(fetchCategories())

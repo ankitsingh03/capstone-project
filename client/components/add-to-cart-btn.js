@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {addToCart} from '../store'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addToCart } from '../store'
 
 class AddToCartButton extends Component {
   constructor(props) {
@@ -11,14 +11,14 @@ class AddToCartButton extends Component {
   }
 
   render() {
-    const { product} = this.props
+    const { product } = this.props
 
     return (
       <div>
         {
           this.state.addAlert ?
-          <button className="btn btn-default no-border" ><span className="glyphicon glyphicon-ok" aria-hidden="true" /> Added to Cart!</button> :
-          this.renderAddButton(product)
+            <button className="btn btn-default no-border" ><span className="glyphicon glyphicon-ok" aria-hidden="true" /> Added to Cart!</button> :
+            this.renderAddButton(product)
         }
       </div>
     )
@@ -36,20 +36,20 @@ class AddToCartButton extends Component {
   }
 
   showAlert() {
-    this.setState({addAlert: true}, () => {
+    this.setState({ addAlert: true }, () => {
       setTimeout(this.hideAlert.bind(this), 500);
     })
   }
 
   hideAlert() {
-    this.setState({addAlert: false})
+    this.setState({ addAlert: false })
   }
 
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    handleAddToCartDispatch (id, price) {
+    handleAddToCartDispatch(id, price) {
       dispatch(addToCart(id, price))
     }
   }

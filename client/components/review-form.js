@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
 import { postReview } from '../store'
 import _ from 'lodash'
 
@@ -20,11 +20,11 @@ class ReviewForm extends Component {
 
     return (
       <div className="review-form">
-        { !user.id 
-        ? <div className="col-sm-12">
+        { !user.id
+          ? <div className="col-sm-12">
             <h3>Sign In Or Sign Up To Leave a Review!</h3>
           </div>
-        : <div className="col-sm-12">
+          : <div className="col-sm-12">
             <h3> Write a Review</h3>
             <form
               onSubmit={evt => handleSubmit(this.state, user.id, product.id, evt)}
@@ -35,7 +35,7 @@ class ReviewForm extends Component {
                 type="text"
                 name="title"
                 value={this.state.title}
-                onChange={evt => this.setState({title: evt.target.value})}
+                onChange={evt => this.setState({ title: evt.target.value })}
                 placeholder="Title"
               />
               <label> Review Description </label>
@@ -44,7 +44,7 @@ class ReviewForm extends Component {
                 type="text"
                 name="content"
                 value={this.state.content}
-                onChange={evt => this.setState({content: evt.target.value})}
+                onChange={evt => this.setState({ content: evt.target.value })}
                 placeholder="Review Description"
               />
               <label> Rate the Product </label>
@@ -53,7 +53,7 @@ class ReviewForm extends Component {
                 type="text"
                 name="rating"
                 value={this.state.rating}
-                onChange={evt => this.setState({rating: evt.target.value})}
+                onChange={evt => this.setState({ rating: evt.target.value })}
               >
                 <option value={1}> 1 </option>
                 <option value={2}> 2 </option>

@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import CategoryPanel from './category-panel'
 import ProductPanel from './product-panel'
-import {withRouter, Link} from 'react-router-dom'
-import {fetchCategoryThunk, fetchProducts, fetchSearchThunk} from '../store'
+import { withRouter, Link } from 'react-router-dom'
+import { fetchCategoryThunk, fetchProducts, fetchSearchThunk } from '../store'
 
 class Home extends Component {
   constructor(props) {
@@ -17,8 +17,8 @@ class Home extends Component {
     }
   }
 
-  render (){
-    const {categories, handleGetSearch} = this.props;
+  render() {
+    const { categories, handleGetSearch } = this.props;
     return (
       <section className="home-content">
         <div className="container">
@@ -41,26 +41,26 @@ class Home extends Component {
               <div className="col-sm-12">
                 <div className="search_box">
                   <div className="input-group">
-                  <input onChange={event => this.onInputChange(event.target.value)} value={this.state.term} type="text" className="form-control" placeholder="Search our amazing smart home products" />
-                  <span className="input-group-btn">
-                    <button className="btn btn-default" type="button" onClick={() => this.handleSetSearch()}>Search</button>
-                  </span>
+                    <input onChange={event => this.onInputChange(event.target.value)} value={this.state.term} type="text" className="form-control" placeholder="Search our amazing smart home products" />
+                    <span className="input-group-btn">
+                      <button className="btn btn-default" type="button" onClick={() => this.handleSetSearch()}>Search</button>
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="col-sm-12">
-                  <hr />
+                <hr />
               </div>
               <div className="col-sm-12 product-content">
                 <h2 className="product-grid-title">
-                {this.state.category === 'all' ? 'ALL PRODUCTS' : this.renderTermOrCategory()}
+                  {this.state.category === 'all' ? 'ALL PRODUCTS' : this.renderTermOrCategory()}
                 </h2>
               </div>
               <div className="product-grid">
-                  {
-                    this.props.categories.length > 0 &&
-                    this.renderProducts()
-                  }
+                {
+                  this.props.categories.length > 0 &&
+                  this.renderProducts()
+                }
               </div>
             </div>
           </div>
@@ -73,8 +73,8 @@ class Home extends Component {
     return this.state.search ? this.state.searchTerm : this.state.category
   }
 
-  onInputChange(term){
-    this.setState({term})
+  onInputChange(term) {
+    this.setState({ term })
   }
 
   renderProducts() {
@@ -89,21 +89,21 @@ class Home extends Component {
 
   handleSetSearch() {
     if (this.state.term) {
-      this.setState({search: true, category: '', searchTerm: this.state.term},
-      () => this.props.handleGetSearch(this.state.term)
+      this.setState({ search: true, category: '', searchTerm: this.state.term },
+        () => this.props.handleGetSearch(this.state.term)
       );
     }
   }
 
   handleSetCategory(category) {
-    this.setState({category: category.name, term: '', search: false},
-    () => this.props.handleGetCategory(category.id)
+    this.setState({ category: category.name, term: '', search: false },
+      () => this.props.handleGetCategory(category.id)
     );
   }
 
   handleSetProducts() {
-    this.setState({category: 'all', term: '', search: false},
-    () => this.props.handleGetProducts()
+    this.setState({ category: 'all', term: '', search: false },
+      () => this.props.handleGetProducts()
     );
   }
 

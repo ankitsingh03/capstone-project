@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function CategoryPanel (props) {
-  const {category} = props;
+export default function CategoryPanel(props) {
+  const { category } = props;
   return (
     <div className="col-sm-4">
       <div className="category-panel panel panel-default text-center">

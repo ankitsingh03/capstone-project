@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import ReactImageMagnify from 'react-image-magnify';
 import AddToCartButton from './add-to-cart-btn'
 import StarRating from './star-rating'
@@ -13,43 +13,43 @@ const SingleProduct = (props) => {
     <div className="single-product-content">
       <div className="container">
         <div className="row">
-        {
-          !product ? null :
-          <div>
-            <div className="col-sm-4 single-product_img">
-              <ReactImageMagnify {...{
-                  smallImage: {
+          {
+            !product ? null :
+              <div>
+                <div className="col-sm-4 single-product_img">
+                  <ReactImageMagnify {...{
+                    smallImage: {
                       isFluidWidth: true,
-                      src: "http://127.0.0.1:8000/"+product.photo,
+                      src: "http://127.0.0.1:8000/" + product.photo,
                       srcSet: [
-                          `${"/"+product.photo} 687w`,
-                          `${"/"+product.photo} 770w`,
-                          `${"/"+product.photo} 861w`,
-                          `${"/"+product.photo} 955w`
+                        `${"/" + product.photo} 687w`,
+                        `${"/" + product.photo} 770w`,
+                        `${"/" + product.photo} 861w`,
+                        `${"/" + product.photo} 955w`
                       ].join(', '),
                       sizes: '(min-width: 480px) 30vw, 80vw'
-                  },
-                  largeImage: {
+                    },
+                    largeImage: {
                       alt: '',
-                      src: "/"+product.photo,
+                      src: "/" + product.photo,
                       width: 1200,
                       height: 1200
-                  }
-              }} />
-            </div>
-            <div className="col-sm-8">
-              <h3>{product.name}</h3>
-              <StarRating {...props} />
-              <p>{product.description}</p>
-              <h4>${product.price}</h4>
-              <AddToCartButton product={product} />
-            </div>
-            <div className="col-sm-8 reviews">
-              <Reviews product={product} />
-              <ReviewForm product={product} />
-            </div>
-          </div>
-        }
+                    }
+                  }} />
+                </div>
+                <div className="col-sm-8">
+                  <h3>{product.name}</h3>
+                  <StarRating {...props} />
+                  <p>{product.description}</p>
+                  <h4>${product.price}</h4>
+                  <AddToCartButton product={product} />
+                </div>
+                <div className="col-sm-8 reviews">
+                  <Reviews product={product} />
+                  <ReviewForm product={product} />
+                </div>
+              </div>
+          }
         </div>
       </div>
     </div>

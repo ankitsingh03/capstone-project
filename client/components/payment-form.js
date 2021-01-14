@@ -40,7 +40,7 @@ class RazorPanel extends Component {
                             "amount": cartTotal * 100,
                             "currency": data.currency,
                             "cart": cart,
-                            "checkout":checkout
+                            "checkout": checkout
                         }
                         fetch('http://127.0.0.1:8000/api/payment_success', {
                             method: "POST",
@@ -49,8 +49,8 @@ class RazorPanel extends Component {
                             },
                             body: JSON.stringify(body)
                         })
-                        // use to redirect after payment success
-                        .then(window.location.replace('http://127.0.0.1:8000/'))
+                            // use to redirect after payment success
+                            .then(window.location.replace('http://127.0.0.1:8000/'))
                     },
                     "prefill": {
                         "name": checkout.firstname,
@@ -77,10 +77,10 @@ class RazorPanel extends Component {
 
             <div>
                 {
-                    
+
                     user.id
-                ?<button id="rzp-button1" onClick={() => {this.RequestOrderPayment(cartTotal, checkout, cart); clearCart();}}>Pay</button> 
-                :<p>Please Login To proceed to Order</p>
+                        ? <button id="rzp-button1" onClick={() => { this.RequestOrderPayment(cartTotal, checkout, cart); clearCart(); }}>Pay</button>
+                        : <p>Please Login To proceed to Order</p>
                 }
             </div>
         )

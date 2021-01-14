@@ -24,16 +24,16 @@ class Reviews extends Component {
           <h3> User Reviews </h3>
           {
             !reviews.length
-            ? <h4>There are no reviews for this product yet.</h4>
-            : reviews.map((review) => {
-              return (
-                <div key={review.id}>
-                  <h4> {review.title} </h4>
-                  <p> Rating: {review.rating} </p>
-                  <p> Description: {review.content} </p>
-                </div>
-              )
-            })
+              ? <h4>There are no reviews for this product yet.</h4>
+              : reviews.map((review) => {
+                return (
+                  <div key={review.id}>
+                    <h4> {review.title} </h4>
+                    <p> Rating: {review.rating} </p>
+                    <p> Description: {review.content} </p>
+                  </div>
+                )
+              })
           }
         </div>
       </div>
@@ -49,7 +49,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleFetchReviews (productId) {
+    handleFetchReviews(productId) {
       dispatch(fetchReviews(productId))
     }
   }
