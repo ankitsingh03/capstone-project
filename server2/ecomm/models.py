@@ -12,19 +12,6 @@ class Category(models.Model):
     photo = models.CharField(max_length=200)
 
 
-# class User(models.Model):
-
-#     class DEF(models.TextChoices):
-#         user = 'user'
-#         admin ='admin'
-#     email = models.EmailField()
-#     password = models.CharField(max_length=200)
-#     role = models.CharField(max_length=20, choices=DEF.choices, default=DEF.user)
-#     salt = models.CharField(max_length=150)
-#     googleId = models.CharField(max_length=150, null=True)
-#     facebookId = models.CharField(max_length=150, null=True)
-
-
 class UserManager(BaseUserManager):
 
     use_in_migrations = True
@@ -66,11 +53,15 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     class DEF(models.TextChoices):
         user = 'user'
-        admin ='admin'
+        admin = 'admin'
     username = models.CharField(_('username'), max_length=30, blank=True)
     email = models.EmailField(unique=True, max_length=255, blank=False)
     password = models.CharField(max_length=200)
-    role = models.CharField(max_length=20, choices=DEF.choices, default=DEF.user)
+    role = models.CharField(
+        max_length=20,
+        choices=DEF.choices,
+        default=DEF.user
+        )
     salt = models.CharField(max_length=150, null=True)
     googleId = models.CharField(max_length=150, null=True)
     facebookId = models.CharField(max_length=150, null=True)
@@ -116,42 +107,21 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-# class Order(models.Model):
-#     class ABC(models.TextChoices):
-#         pending = 'pending'
-#         shipped = 'shipped'
-#         delivered = 'delivered'
-#     class XYZ(models.TextChoices):
-#         Delhi = 'Delhi'
-#         Mumbai = 'Mumbai'
-#         Bangalore = 'Bangalore'
-#         Kolkata = 'Kolkata'
-#         Chennai = 'Chennai'
-#     status = models.CharField(max_length=50, choices=ABC.choices, default=ABC.pending)
-#     firstname = models.CharField(max_length=100)
-#     lastname = models.CharField(max_length=100)
-#     street = models.CharField(max_length=100)
-#     street2 = models.CharField(max_length=100)
-#     state = models.CharField(max_length=100, choices=XYZ.choices)
-#     zip_code = models.CharField(max_length=10)
-#     phone = models.CharField(max_length=20)
-#     email = models.EmailField(max_length=150)
-#     total = models.BigIntegerField(null=True)
-#     token = models.CharField(max_length=120, null=True)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
 class Order(models.Model):
     class ABC(models.TextChoices):
         pending = 'pending'
         shipped = 'shipped'
         delivered = 'delivered'
+
     class XYZ(models.TextChoices):
         Delhi = 'Delhi'
         Mumbai = 'Mumbai'
         Bangalore = 'Bangalore'
         Kolkata = 'Kolkata'
         Chennai = 'Chennai'
-    status = models.CharField(max_length=50, choices=ABC.choices, default=ABC.pending)
+    status = models.CharField(
+        max_length=50, choices=ABC.choices, default=ABC.pending
+        )
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
@@ -161,13 +131,17 @@ class Order(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=150)
     total = models.BigIntegerField(null=True)
-    order_id = models.CharField(max_length=100,null=True)
-    payment_id = models.CharField(max_length=100,null=True)
-    signature = models.CharField(max_length=100,null=True)
+    order_id = models.CharField(max_length=100, null=True)
+    payment_id = models.CharField(max_length=100, null=True)
+    signature = models.CharField(max_length=100, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class LineItem(models.Model):
     quantity = models.BigIntegerField()
-    product = models.ForeignKey(Product, related_name='product_det', on_delete=models.CASCADE)
-    order = models.ForeignKey(Order,related_name='lineItems', on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, related_name='product_det', on_delete=models.CASCADE
+        )
+    order = models.ForeignKey(
+        Order, related_name='lineItems', on_delete=models.CASCADE
+        )

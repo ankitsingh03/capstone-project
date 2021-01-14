@@ -15,8 +15,6 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# TEMPLATE_DIR = os.path.join(BASE_DIR, )
-# STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -68,7 +66,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'ecomm.User'   ## custom user model
+AUTH_USER_MODEL = 'ecomm.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -124,10 +122,10 @@ WSGI_APPLICATION = 'server2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ankushdb', 
-        'USER': 'ankushproject', 
+        'NAME': 'ankushdb',
+        'USER': 'ankushproject',
         'PASSWORD': 'ankush',
-        'HOST': '127.0.0.1', 
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }

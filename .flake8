@@ -1,0 +1,3 @@
+[flake8]
+
+exclude =./server2/ecomm/migrations, env, ./node_modules, ./server2/server2/settings.py, ./server2/ecomm/tests.py, ./server2/ecomm/management

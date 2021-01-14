@@ -79,8 +79,8 @@ class RazorPanel extends Component {
                 {
 
                     user.id
-                        ? <button id="rzp-button1" onClick={() => { this.RequestOrderPayment(cartTotal, checkout, cart); clearCart(); }}>Pay</button>
-                        : <p>Please Login To proceed to Order</p>
+                        ? <button className="btn btn-success btn-block" id="rzp-button1" onClick={() => { this.RequestOrderPayment(cartTotal, checkout, cart); clearCart(); }}>Pay</button>
+                        : <button className="btn btn-success btn-block" onClick={() => {window.location.replace('http://127.0.0.1:8000/login/')}}>Login To Proceed</button>
                 }
             </div>
         )

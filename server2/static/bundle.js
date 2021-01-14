@@ -21887,7 +21887,7 @@ var Cart = function (_Component) {
   _createClass(Cart, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log(this.props.cart);
+
       if (this.props.cart.length) {
         this.props.handleFetchProducts(this.props.cart);
       }
@@ -21895,7 +21895,7 @@ var Cart = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
-      console.log(this.props.cart);
+
       if (prevProps.cart.length !== this.props.cart.length) {
         this.props.handleFetchProducts(this.props.cart);
       }
@@ -21910,7 +21910,6 @@ var Cart = function (_Component) {
           handleCartClear = _props.handleCartClear,
           view = _props.view;
 
-      console.log(cartTotal);
 
       return _react2.default.createElement(
         'div',
@@ -22153,14 +22152,16 @@ var RazorPanel = function (_Component) {
                 null,
                 user.id ? _react2.default.createElement(
                     'button',
-                    { id: 'rzp-button1', onClick: function onClick() {
+                    { className: 'btn btn-success btn-block', id: 'rzp-button1', onClick: function onClick() {
                             _this2.RequestOrderPayment(cartTotal, checkout, cart);(0, _store.clearCart)();
                         } },
                     'Pay'
                 ) : _react2.default.createElement(
-                    'p',
-                    null,
-                    'Please Login To proceed to Order'
+                    'button',
+                    { className: 'btn btn-success btn-block', onClick: function onClick() {
+                            window.location.replace('http://127.0.0.1:8000/login/');
+                        } },
+                    'Login To Proceed'
                 )
             );
         }
@@ -22594,16 +22595,6 @@ var removeAllItem = exports.removeAllItem = function removeAllItem(id) {
   localStorage.setItem('cart', stringCart);
   return { type: REMOVE_ITEM, currentCart: currentCart };
 };
-
-/**
- * THUNK CREATORS
- */
-// export const fetchCart = () =>
-//   dispatch =>
-//     axios.get('/api/categories')
-//       .then(res =>
-//         dispatch(getCategories(res.data || defaultProduct)))
-//       .catch(err => console.log(err))
 
 var fetchCart = exports.fetchCart = function fetchCart() {
   var currentCart = JSON.parse(localStorage.getItem('cart'));
@@ -28893,7 +28884,6 @@ var Checkout = function (_Component) {
   }, {
     key: 'paymentCallback',
     value: function paymentCallback(token) {
-      // console.log('payment callBack', token)
       var _props = this.props,
           checkout = _props.checkout,
           cart = _props.cart,
@@ -29930,8 +29920,6 @@ var PastOrders = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-
-      console.log(this.props.orders);
       return _react2.default.createElement(
         'div',
         null,
@@ -30408,8 +30396,6 @@ function fetchProductsForCart(cartItems) {
   });
 
   var idString = idArray.join(',');
-
-  console.log(idString);
 
   return function thunk(dispatch) {
     _axios2.default.get('http://127.0.0.1:8000/api/cart/' + idString).then(function (res) {
