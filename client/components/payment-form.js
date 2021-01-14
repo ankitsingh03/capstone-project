@@ -49,6 +49,8 @@ class RazorPanel extends Component {
                             },
                             body: JSON.stringify(body)
                         })
+                        // use to redirect after payment success
+                        .then(window.location.replace('http://127.0.0.1:8000/'))
                     },
                     "prefill": {
                         "name": checkout.firstname,

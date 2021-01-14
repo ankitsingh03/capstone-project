@@ -22116,7 +22116,9 @@ var RazorPanel = function (_Component) {
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify(body)
-                        });
+                        })
+                        // use to redirect after payment success
+                        .then(window.location.replace('http://127.0.0.1:8000/'));
                     },
 
                     "prefill": {
@@ -28679,13 +28681,13 @@ function AuthForm(props) {
           ),
           _react2.default.createElement(
             'a',
-            { href: '/accounts/google/login/callback/' },
+            { href: '/accounts/google/login/' },
             _react2.default.createElement('div', { className: 'google-signin' })
           ),
           _react2.default.createElement('br', null),
           _react2.default.createElement(
             'a',
-            { href: '/auth/facebook' },
+            { href: '/accounts/facebook/login/' },
             _react2.default.createElement('div', { className: 'facebook-signin' })
           ),
           name === 'login' ? _react2.default.createElement(
