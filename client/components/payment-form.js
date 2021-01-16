@@ -31,6 +31,7 @@ class RazorPanel extends Component {
                     "amount": cartTotal * 100,
                     "currency": data.currency,
                     "name": "Smart Mart",
+                    "image": "https://uspto.report/TM/88055727/mark",
                     "order_id": data.id,
                     handler(response) {
                         var body = {

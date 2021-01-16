@@ -36,6 +36,9 @@ class PastOrders extends Component {
                     <li>Qty: {lineItem.quantity}</li>
                   </ul>
                 </div>
+                <div className="col-sm-3">
+                  <li> Status: {order.status} </li>
+                </div>
                 <div className="col-sm-2">
                   <p>Price: <strong>{'$' + ((+lineItem.product.price * +lineItem.quantity).toFixed(2))}</strong></p>
                 </div>

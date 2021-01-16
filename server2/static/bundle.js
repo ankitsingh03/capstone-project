@@ -22098,6 +22098,7 @@ var RazorPanel = function (_Component) {
                     "amount": cartTotal * 100,
                     "currency": data.currency,
                     "name": "Smart Mart",
+                    "image": "https://uspto.report/TM/88055727/mark",
                     "order_id": data.id,
                     handler: function handler(response) {
                         var body = {
@@ -29983,6 +29984,17 @@ var PastOrders = function (_Component) {
                     'Qty: ',
                     lineItem.quantity
                   )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-3' },
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  ' Status: ',
+                  order.status,
+                  ' '
                 )
               ),
               _react2.default.createElement(

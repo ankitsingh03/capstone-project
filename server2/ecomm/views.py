@@ -13,6 +13,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import razorpay
+from .email_send import send_mail
 # Create your views here.
 
 
@@ -236,7 +237,7 @@ def payment_complete(request, format=None):
             LineItem.objects.create(
                 quantity=i['quantity'], product=product, order=order_obj
                 )
-
+        send_mail(checkout["email"])
     return HttpResponse(status=status.HTTP_201_CREATED)
 
 
