@@ -18,13 +18,7 @@ from .email_send import send_mail
 
 
 @csrf_exempt
-def index(request):
-    return render(request, 'index.html')
-
-
-@csrf_exempt
-def index2(request, pk):
-    reviews = Review.objects.filter(id=pk).all()
+def index(request, pk=0):
     return render(request, 'index.html')
 
 

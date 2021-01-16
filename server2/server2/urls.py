@@ -18,7 +18,7 @@ from django.urls import path, include
 from ecomm.views import category_list, category_detail, product_list,\
     review_product, review_detail, cart_detail,\
     order_list, payment_process, payment_complete,\
-    user_login, register, get_auth, logout_view, index, index2
+    user_login, register, get_auth, logout_view, index
 
 urlpatterns = [
     path('', index),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('home/', index),
     path('checkout/', index),
     path('cart/', index),
-    path('products/<int:pk>', index2),
+    path('products/<int:pk>', index),
     path('admin/', admin.site.urls),
     path('api/categories', category_list),
     path('api/categories/<int:pk>/', category_detail),
